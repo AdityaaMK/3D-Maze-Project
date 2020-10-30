@@ -36,8 +36,43 @@ public class Wall {
         return new Color(r, g, b);
     }
 
+    public void setColor(int r, int b, int g) {
+        this.r = r;
+        this.b = b;
+        this.g = g;
+    }
+
     public GradientPaint getPaint() {
-        return new GradientPaint(0, 0, getColor(), 0, 0, Color.BLACK);
+        int rr = getColor().getRed(), gg = getColor().getGreen(), bb = getColor().getBlue();
+        int newR, newG, newB;
+
+        if (rr >= 50)
+            newR = rr - 50;
+        else
+            newR = 0;
+        if (gg >= 50)
+            newG = gg - 50;
+        else
+            newG = 0;
+        if (bb >= 50)
+            newB = bb - 50;
+        else
+            newB = 0;
+
+        if (getType().equals("LeftWall")) {
+            // System.out.println("Left Wall: " + rows[0] + " " + cols[0] + " " + rows[1] +
+            // " " + cols[0]);
+            return new GradientPaint(rows[0], 0, getColor(), rows[1], 0, new Color(newR, newG, newB));
+        } else if (getType().equals("RightWall")) {
+            // System.out.println("Right Wall: " + rows[3] + " " + cols[0] + " " + rows[2] +
+            // " " + cols[0]);
+            return new GradientPaint(rows[3], 0, getColor(), rows[2], 0, new Color(newR, newG, newB));
+        } else if (getType().equals("CeilMain")) {
+            return new GradientPaint(0, cols[1], getColor(), 0, cols[2], new Color(newR, newG, newB));
+        } else if (getType().equals("FloorMain")) {
+            return new GradientPaint(0, cols[2], getColor(), 0, cols[1], new Color(newR, newG, newB));
+        }
+        return new GradientPaint(rows[0], cols[0], new Color(r - 50, g - 50, b - 50), rows[0], cols[0], getColor());
     }
 
 }

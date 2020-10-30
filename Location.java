@@ -22,4 +22,10 @@ public class Location {
     public int getC() {
         return c;
     }
+
+    public double getDistance(Location loc) {
+        int dRow = r - loc.getR();
+        int dCol = c - loc.getC();
+        return Math.sqrt((dRow * dRow) + (dCol * dCol));
+    }
 }
