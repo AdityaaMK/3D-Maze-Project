@@ -274,6 +274,7 @@ public class MazeProject extends JPanel implements KeyListener {
             walls.add(new Wall(rLocs, cLocs, 255 - shrink * (i), 255 - shrink * (i), 255 - shrink * (i), size,
                     "CeilMain"));
         }
+
     }
 
     public Wall getLeft(int n) // trapezoid

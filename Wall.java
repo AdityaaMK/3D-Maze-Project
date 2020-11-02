@@ -62,16 +62,35 @@ public class Wall {
         if (getType().equals("LeftWall")) {
             // System.out.println("Left Wall: " + rows[0] + " " + cols[0] + " " + rows[1] +
             // " " + cols[0]);
-            return new GradientPaint(rows[0], 0, getColor(), rows[1], 0, new Color(newR, newG, newB));
+            return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("RightWall")) {
             // System.out.println("Right Wall: " + rows[3] + " " + cols[0] + " " + rows[2] +
             // " " + cols[0]);
-            return new GradientPaint(rows[3], 0, getColor(), rows[2], 0, new Color(newR, newG, newB));
+            return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("CeilMain")) {
-            return new GradientPaint(0, cols[1], getColor(), 0, cols[2], new Color(newR, newG, newB));
-        } else if (getType().equals("FloorMain")) {
-            return new GradientPaint(0, cols[2], getColor(), 0, cols[1], new Color(newR, newG, newB));
-        }
+            return new GradientPaint(0, rows[1], getColor(), 0, rows[0], new Color(newR, newG, newB));
+        } else if (getType().equals("FloorMain") || getType().equals("CeilLeft") || getType().equals("CeilRight")
+                || getType().equals("FloorLeft") || getType().equals("FloorRight")) {
+            return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR, newG, newB));
+        } else if (getType().equals("LeftPath")) {
+            return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
+        } else if (getType().equals("RightPath")) {
+            return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
+        } // else if (getType().equals("CeilLeft")) {
+          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
+          // newG, newB));
+          // } else if (getType().equals("CeilRight")) {
+          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
+          // newG, newB));
+          // }
+          // else if (getType().equals("FloorMain")) {
+          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
+          // newG, newB));
+          // }
+          // else if (getType().equals("FloorMain")) {
+          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
+          // newG, newB));
+          // }
         return new GradientPaint(rows[0], cols[0], new Color(r - 50, g - 50, b - 50), rows[0], cols[0], getColor());
     }
 
