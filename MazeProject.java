@@ -16,13 +16,12 @@ public class MazeProject extends JPanel implements KeyListener {
     ArrayList<Wall> walls;
     boolean draw3D = false;
     int shrink = 50;
-    Image wallImg;
     int r = 1, c = 0;
     int initialDir = 1;
     int moves = 0;
-    int sprayPaints = 15;
-    boolean spray;
-    char[][] sprayWallLocations = new char[numRows][numCols];
+    int sensors = 15;
+    boolean sensorDropped;
+    char[][] sensorWallLocations = new char[numRows][numCols];
     int mapSize = 3;
 
     public MazeProject() {
@@ -76,9 +75,9 @@ public class MazeProject extends JPanel implements KeyListener {
         } else if (!gameWon()) {
             boolean sensorRightBelow = true;
             for (int w = 0; w < walls.size(); w++) {
-                for (int c = 0; c < sprayWallLocations[0].length; c++)
-                    for (int r = 0; r < sprayWallLocations.length; r++)
-                        if (walls.get(w).getType().equals("FloorMain") && sprayWallLocations[r][c] == '#'
+                for (int c = 0; c < sensorWallLocations[0].length; c++)
+                    for (int r = 0; r < sensorWallLocations.length; r++)
+                        if (walls.get(w).getType().equals("FloorMain") && sensorWallLocations[r][c] == '#'
                                 && hero.getLoc().getR() == r && hero.getLoc().getC() == c && sensorRightBelow) {
                             walls.get(w).setColor(0, 255, 0);
                             sensorRightBelow = false;
@@ -99,8 +98,9 @@ public class MazeProject extends JPanel implements KeyListener {
 
             g.setColor(Color.WHITE);
             g.setFont(new Font("TimesRoman", Font.BOLD, 12));
-            g.drawString("* Press Spacebar for Flashlight", 1200, 35);
-            g.drawString("* Press Delete to Quit", 1200, 50);
+            g.drawString("* Press Delete to Quit", 1200, 35);
+            g.drawString("* Press A for Flashlight", 1200, 50);
+            g.drawString("* Press Down Arrow to Drop Sensor", 1200, 65);
 
             g.drawString("Moves: " + hero.getMoves(), 1200, 640);
 
@@ -112,6 +112,8 @@ public class MazeProject extends JPanel implements KeyListener {
             g.drawString("Battery: " + hero.getBattery() + "%", 1200, 700);
 
             g.drawString("Visiblity: " + hero.getVisibleDistance() + " Spaces", 1200, 730);
+
+            g.drawString("Sensors Remaining: " + sensors, 1200, 760);
         } else if (gameWon()) {
             g.setColor(Color.WHITE);
             Font font = new Font("TimesRoman", Font.BOLD, 40);
@@ -256,15 +258,15 @@ public class MazeProject extends JPanel implements KeyListener {
 
     public void setFloorsandCeilings() {
         for (int i = 0; i < 5; i++) {
-            if (spray) {
-                sprayWallLocations[hero.getLoc().getR()][hero.getLoc().getC()] = '#';
-                spray = false;
-            } else {
-                int[] rLocs = { 700 - (shrink * i), 650 - (shrink * i), 650 - (shrink * i), 700 - (shrink * i) };
-                int[] cLocs = { 750 - (shrink * i), 700 - (shrink * i), 100 + (shrink * i), 50 + (shrink * i) };
-                walls.add(new Wall(rLocs, cLocs, 255 - shrink * (i), 255 - shrink * (i), 255 - shrink * (i), size,
-                        "FloorMain"));
+            if (sensorDropped) {
+                sensorWallLocations[hero.getLoc().getR()][hero.getLoc().getC()] = '#';
+                sensorDropped = false;
+                sensors--;
             }
+            int[] rLocs = { 700 - (shrink * i), 650 - (shrink * i), 650 - (shrink * i), 700 - (shrink * i) };
+            int[] cLocs = { 750 - (shrink * i), 700 - (shrink * i), 100 + (shrink * i), 50 + (shrink * i) };
+            walls.add(new Wall(rLocs, cLocs, 255 - shrink * (i), 255 - shrink * (i), 255 - shrink * (i), size,
+                    "FloorMain"));
         }
         for (int i = 0; i < 5; i++) {
             int[] rLocs = { 150 + (shrink * i), 100 + (shrink * i), 100 + (shrink * i), 150 + (shrink * i) };
@@ -357,8 +359,8 @@ public class MazeProject extends JPanel implements KeyListener {
         if (draw3D)
             createWalls();
 
-        if (e.getKeyCode() == 40)
-            spray = true;
+        if (e.getKeyCode() == 40 && sensors != 0)
+            sensorDropped = true;
 
         if (e.getKeyCode() == 65 && hero.getBattery() > 0) {
             hero.toggleFlash();

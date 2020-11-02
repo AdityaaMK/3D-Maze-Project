@@ -36,10 +36,10 @@ public class Wall {
         return new Color(r, g, b);
     }
 
-    public void setColor(int r, int b, int g) {
+    public void setColor(int r, int g, int b) {
         this.r = r;
-        this.b = b;
         this.g = g;
+        this.b = b;
     }
 
     public GradientPaint getPaint() {
