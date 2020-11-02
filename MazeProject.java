@@ -389,6 +389,6 @@ public class MazeProject extends JPanel implements KeyListener {
     }
 
     public static void main(String[] args) {
-        MazeProject maze = new MazeProject();
+        new MazeProject();
     }
 }
