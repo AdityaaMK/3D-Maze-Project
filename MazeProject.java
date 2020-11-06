@@ -97,29 +97,29 @@ public class MazeProject extends JPanel implements KeyListener {
             g2.fillOval(hero.getLoc().getC() * 10 + 770, hero.getLoc().getR() * 10 + 200, 10, 10);
 
             g.setColor(Color.WHITE);
-            g.setFont(new Font("TimesRoman", Font.BOLD, 12));
-            g.drawString("* Press Delete to Quit", 1200, 35);
-            g.drawString("* Press A for Flashlight", 1200, 50);
-            g.drawString("* Press Down Arrow to Drop Sensor", 1200, 65);
+            g.setFont(new Font("Phosphate", Font.BOLD, 12));
+            g.drawString("* Press Delete to Quit", 1180, 35);
+            g.drawString("* Press A for Flashlight", 1180, 50);
+            g.drawString("* Press Down Arrow to Drop Sensor", 1180, 65);
 
-            g.drawString("Moves: " + hero.getMoves(), 1200, 640);
+            g.drawString("Moves: " + hero.getMoves(), 1180, 640);
 
             if (hero.getFlash() && hero.getBattery() != 0)
-                g.drawString("Flashlight: On", 1200, 670);
+                g.drawString("Flashlight: On", 1180, 670);
             else
-                g.drawString("Flashlight: Off", 1200, 670);
+                g.drawString("Flashlight: Off", 1180, 670);
 
-            g.drawString("Battery: " + hero.getBattery() + "%", 1200, 700);
+            g.drawString("Battery: " + hero.getBattery() + "%", 1180, 700);
 
-            g.drawString("Visiblity: " + hero.getVisibleDistance() + " Spaces", 1200, 730);
+            g.drawString("Visiblity: " + hero.getVisibleDistance() + " Spaces", 1180, 730);
 
-            g.drawString("Sensors Remaining: " + sensors, 1200, 760);
+            g.drawString("Sensors Remaining: " + sensors, 1180, 760);
         } else if (gameWon()) {
             g.setColor(Color.WHITE);
-            Font font = new Font("TimesRoman", Font.BOLD, 40);
+            Font font = new Font("Phosphate", Font.BOLD, 40);
             g.setFont(font);
-            g.drawString("CONGRATS! YOU BEAT THE MAZE!", 175, 400);
-            g.drawString("FINISHED WITH " + hero.getMoves() + " MOVES!", 175, 500);
+            g.drawString("YOU ARE AWESOME! YOU BEAT THE MAZE!", 250, 300);
+            g.drawString("FINISHED WITH " + hero.getMoves() + " MOVES!", 250, 400);
         }
 
     }
@@ -353,7 +353,6 @@ public class MazeProject extends JPanel implements KeyListener {
             return;
 
         hero.move(e.getKeyCode(), maze);
-        // System.out.println(hero.getDir());
 
         if (e.getKeyCode() == 32)
             draw3D = !draw3D;

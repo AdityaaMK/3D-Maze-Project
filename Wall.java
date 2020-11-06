@@ -60,12 +60,8 @@ public class Wall {
             newB = 0;
 
         if (getType().equals("LeftWall")) {
-            // System.out.println("Left Wall: " + rows[0] + " " + cols[0] + " " + rows[1] +
-            // " " + cols[0]);
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("RightWall")) {
-            // System.out.println("Right Wall: " + rows[3] + " " + cols[0] + " " + rows[2] +
-            // " " + cols[0]);
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("CeilMain")) {
             return new GradientPaint(0, rows[1], getColor(), 0, rows[0], new Color(newR, newG, newB));
@@ -76,8 +72,8 @@ public class Wall {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("RightPath")) {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
-        } 
-        return new GradientPaint(rows[0], cols[0], new Color(r - 50, g - 50, b - 50), rows[0], cols[0], getColor());
+        }
+        return new GradientPaint(rows[0], cols[0], new Color(newR, newG, newB), rows[0], cols[0], getColor());
     }
 
 }
