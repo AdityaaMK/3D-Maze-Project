@@ -18,15 +18,15 @@ public class MazeProject extends JPanel implements KeyListener {
     int shrink = 50;
     int r = 1, c = 0;
     int initialDir = 1;
-    int moves = 0;
     int sensors = 15;
     boolean sensorDropped;
     char[][] sensorWallLocations = new char[numRows][numCols];
     int mapSize = 3;
+    int flashTimer = 0;
 
     public MazeProject() {
 
-        hero = new Hero(new Location(r, c), initialDir, size, Color.RED, moves, 3, 100, false);
+        hero = new Hero(new Location(r, c), initialDir, size, Color.RED, 0, 3, 100, false);
         setBoard();
         frame = new JFrame("Adityaa's Maze");
         frame.add(this);
@@ -95,6 +95,11 @@ public class MazeProject extends JPanel implements KeyListener {
                         g2.fillRect(c * 10 + 770, r * 10 + 200, 10, 10);
             g2.setColor(hero.getColor());
             g2.fillOval(hero.getLoc().getC() * 10 + 770, hero.getLoc().getR() * 10 + 200, 10, 10);
+
+            if (hero.getBattery() > 0 && hero.getFlash() && hero.getMoves() - flashTimer >= 10) {
+                hero.toggleFlash();
+                mapSize = hero.getVisibleDistance();
+            }
 
             g.setColor(Color.WHITE);
             g.setFont(new Font("Phosphate", Font.BOLD, 12));
@@ -365,6 +370,7 @@ public class MazeProject extends JPanel implements KeyListener {
         if (e.getKeyCode() == 65 && hero.getBattery() > 0) {
             hero.toggleFlash();
             mapSize = hero.getVisibleDistance();
+            flashTimer = hero.getMoves();
         }
 
         if (e.getKeyCode() == 8) {

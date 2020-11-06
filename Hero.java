@@ -36,6 +36,10 @@ public class Hero {
         return flashStatus;
     }
 
+    public void setFlash() {
+        flashStatus = !flashStatus;
+    }
+
     public void toggleFlash() {
         if (flashStatus) {
             flashStatus = false;
