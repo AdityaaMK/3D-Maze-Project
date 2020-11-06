@@ -76,21 +76,7 @@ public class Wall {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("RightPath")) {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
-        } // else if (getType().equals("CeilLeft")) {
-          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
-          // newG, newB));
-          // } else if (getType().equals("CeilRight")) {
-          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
-          // newG, newB));
-          // }
-          // else if (getType().equals("FloorMain")) {
-          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
-          // newG, newB));
-          // }
-          // else if (getType().equals("FloorMain")) {
-          // return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR,
-          // newG, newB));
-          // }
+        } 
         return new GradientPaint(rows[0], cols[0], new Color(r - 50, g - 50, b - 50), rows[0], cols[0], getColor());
     }
 
