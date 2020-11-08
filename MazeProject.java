@@ -274,7 +274,7 @@ public class MazeProject extends JPanel implements KeyListener {
                     "FloorMain"));
         }
         for (int i = 0; i < 5; i++) {
-            int[] rLocs = { 150 + (shrink * i), 100 + (shrink * i), 100 + (shrink * i), 150 + (shrink * i) };
+            int[] rLocs = { 100 + (shrink * i), 150 + (shrink * i), 150 + (shrink * i), 100 + (shrink * i) };
             int[] cLocs = { 750 - (shrink * i), 700 - (shrink * i), 100 + (shrink * i), 50 + (shrink * i) };
             walls.add(new Wall(rLocs, cLocs, 255 - shrink * (i), 255 - shrink * (i), 255 - shrink * (i), size,
                     "CeilMain"));

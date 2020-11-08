@@ -63,10 +63,8 @@ public class Wall {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
         } else if (getType().equals("RightWall")) {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
-        } else if (getType().equals("CeilMain")) {
-            return new GradientPaint(0, rows[1], getColor(), 0, rows[0], new Color(newR, newG, newB));
-        } else if (getType().equals("FloorMain") || getType().equals("CeilLeft") || getType().equals("CeilRight")
-                || getType().equals("FloorLeft") || getType().equals("FloorRight")) {
+        } else if (getType().equals("FloorMain") || getType().equals("CeilMain") || getType().equals("CeilLeft")
+                || getType().equals("CeilRight") || getType().equals("FloorLeft") || getType().equals("FloorRight")) {
             return new GradientPaint(0, rows[0], getColor(), 0, rows[1], new Color(newR, newG, newB));
         } else if (getType().equals("LeftPath")) {
             return new GradientPaint(cols[0], 0, getColor(), cols[1], 0, new Color(newR, newG, newB));
